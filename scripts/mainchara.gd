@@ -107,6 +107,7 @@ func play_anim(animation):
 				anim.play("idleside")
 	elif dir == "down":
 		anim.flip_v = true
+		melee_box.target_position = Vector2(0, 60)
 		if attacking_rn:
 			pass
 		else:
@@ -115,6 +116,7 @@ func play_anim(animation):
 			elif animation == 0:
 				anim.play("idle")
 	elif dir == "up":
+		melee_box.target_position = Vector2(0, -60)
 		anim.flip_v = false
 		if attacking_rn:
 			pass
