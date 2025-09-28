@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbblcbmhmslnt"]
+
+[ext_resource type="SpriteFrames" uid="uid://fk6gy1unycu6" path="res://art/frames/mainchara_spriteframes.tres" id="1_583j3"]
+[ext_resource type="Script" path="res://scripts/mainchara.gd" id="1_gp3er"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqkp3"]
+size = Vector2(32, 33)
+
+[node name="mainchara" type="CharacterBody2D"]
+script = ExtResource("1_gp3er")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("1_583j3")
+animation = &"idleside"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -13, 7, -13, 13, -1, 24, 0, 20, 8, -21, 8, -22, 0, -10, -2)
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_sqkp3")
+
+[node name="melee_box" type="RayCast2D" parent="."]
+target_position = Vector2(60, 0)
+
+[node name="Timer" type="Timer" parent="melee_box"]
+one_shot = true

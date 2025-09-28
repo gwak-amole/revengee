@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccp370uyg4r8k"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_if51k"]
+[ext_resource type="SpriteFrames" uid="uid://byjprcx5x4hai" path="res://art/frames/ogre_spriteframes.tres" id="2_yabdj"]
+[ext_resource type="PackedScene" uid="uid://dijwblf6rr713" path="res://scenes/progress_bar.tscn" id="3_k3lr8"]
+[ext_resource type="AudioStream" uid="uid://5r1r4t7kppd3" path="res://audio/hurt.wav" id="4_rdd1m"]
+
+[node name="enemy" type="CharacterBody2D" groups=["Enemies"]]
+position = Vector2(169, 49)
+script = ExtResource("1_if51k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("2_yabdj")
+animation = &"hit"
+frame_progress = 0.783199
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-9, -9, -9, 9, -2, 14, -1, 22, 9, 23, 10, -22, 0, -23, -3, -13)
+
+[node name="enemy_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="enemy_hitbox"]
+polygon = PackedVector2Array(-22, -9, -23, 11, -4, 14, -4, 22, 8, 23, 11, -24, -1, -24, -3, -13)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="HealthBar" parent="." instance=ExtResource("3_k3lr8")]
+offset_left = -17.0
+offset_top = -30.0
+offset_right = 19.0
+offset_bottom = -26.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rdd1m")
+
+[connection signal="area_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

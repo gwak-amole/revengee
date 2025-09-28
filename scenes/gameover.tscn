@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://crimwmnpd1i0h"]
+
+[ext_resource type="Texture2D" uid="uid://ye74gjc47mep" path="res://art/gameover.png" id="1_0dk4g"]
+[ext_resource type="Script" path="res://scripts/gameover.gd" id="1_lixf5"]
+[ext_resource type="Texture2D" uid="uid://c3cw7rerm250n" path="res://art/gameoverbtn.png" id="2_1ir0p"]
+[ext_resource type="Texture2D" uid="uid://cjvdcxpmuhjs0" path="res://art/gameoverbtnpressed.png" id="3_ym7n2"]
+[ext_resource type="FontFile" uid="uid://dm81osccu5431" path="res://fonts/Micro_5/Micro5-Regular.ttf" id="4_617j5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cl71"]
+
+[node name="gameover" type="Node2D"]
+script = ExtResource("1_lixf5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 1150.0
+offset_bottom = 647.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_0dk4g")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 111.0
+offset_top = 186.0
+offset_right = 1031.0
+offset_bottom = 466.0
+texture_normal = ExtResource("2_1ir0p")
+texture_pressed = ExtResource("3_ym7n2")
+texture_hover = ExtResource("3_ym7n2")
+
+[node name="points" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="points"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_top = 50.0
+offset_right = 21.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0cl71")
+
+[node name="Label" type="Label" parent="points/Panel"]
+layout_mode = 0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("4_617j5")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

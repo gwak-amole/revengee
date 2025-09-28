@@ -1,0 +1,312 @@
+[gd_scene load_steps=21 format=4 uid="uid://ybttcib7prf6"]
+
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_0ipxr"]
+[ext_resource type="PackedScene" uid="uid://cbblcbmhmslnt" path="res://scenes/mainchara.tscn" id="1_64j8e"]
+[ext_resource type="Texture2D" uid="uid://ygo2ued5k6mx" path="res://art/tileset/dirttiles.png" id="1_apygn"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_e0drp"]
+[ext_resource type="Texture2D" uid="uid://b6ig2koux2vgn" path="res://art/tileset/level2tiles.png" id="3_raxv0"]
+[ext_resource type="PackedScene" uid="uid://n1pekm2liskn" path="res://scenes/spawner.tscn" id="4_3x0ky"]
+[ext_resource type="Texture2D" uid="uid://cucujmx8x5rfj" path="res://art/tileset/level3tiles.png" id="4_m6btk"]
+[ext_resource type="Texture2D" uid="uid://b7s6lqpennfvt" path="res://art/heart.png" id="6_swbbo"]
+[ext_resource type="Texture2D" uid="uid://b2k2cbr123waa" path="res://art/swordammo.png" id="7_dbwpm"]
+[ext_resource type="FontFile" uid="uid://dm81osccu5431" path="res://fonts/Micro_5/Micro5-Regular.ttf" id="7_fu8xd"]
+[ext_resource type="AudioStream" uid="uid://cel154mt4f87h" path="res://audio/683457__seth_makes_sounds__dope-video-game-boss-music.wav" id="11_lliu4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73ive"]
+texture = ExtResource("1_apygn")
+texture_region_size = Vector2i(72, 72)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_67mud"]
+tile_size = Vector2i(72, 72)
+sources/0 = SubResource("TileSetAtlasSource_73ive")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_liy2i"]
+texture = ExtResource("3_raxv0")
+texture_region_size = Vector2i(72, 72)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l2f17"]
+tile_size = Vector2i(72, 72)
+sources/0 = SubResource("TileSetAtlasSource_liy2i")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0cf52"]
+texture = ExtResource("4_m6btk")
+texture_region_size = Vector2i(72, 72)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jx7xl"]
+tile_size = Vector2i(72, 72)
+sources/0 = SubResource("TileSetAtlasSource_0cf52")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmu8i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wi0rb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ckrkj"]
+
+[node name="gamebase" type="Node2D"]
+
+[node name="GameController" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("1_0ipxr")
+pointspath = NodePath("../points/Panel/Label")
+heartsboxpath = NodePath("../hearts/Panel/HBoxContainer")
+swordsboxpath = NodePath("../swords/Panel/HBoxContainer")
+enemieskilledpath = NodePath("../enemycount/Panel/Label")
+level1path = NodePath("../level1")
+level2path = NodePath("../level2")
+level3path = NodePath("../level3")
+optionspath = NodePath("../options")
+camerapath = NodePath("../Camera2D")
+audiopath = NodePath("../AudioStreamPlayer")
+
+[node name="level1" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="level1"]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="level1/ParallaxLayer"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAABAAAAAAAGAAMAAAABAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAAAAAABAAAAAAAIAAEAAAABAAAAAAAIAAIAAAABAAAAAAAIAAMAAAABAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAACAPz/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAACAAAAAAADAP7/AAACAAAAAAADAP//AAABAAAAAAAEAPz/AAAAAAAAAAAEAP3/AAACAAAAAAAEAP7/AAACAAAAAAAEAP//AAABAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAAAAAAAAAAGAPz/AAACAAAAAAAGAP3/AAACAAAAAAAGAP7/AAACAAAAAAAGAP//AAACAAAAAAAHAPz/AAACAAAAAAAHAP3/AAACAAAAAAAHAP7/AAACAAAAAAAHAP//AAACAAAAAAAIAPz/AAAAAAAAAAAIAP3/AAAAAAAAAAAIAP7/AAAAAAAAAAAIAP//AAAAAAAAAAALAP3/AAAAAAAAAAALAP7/AAAAAAAAAAAMAP3/AAAAAAAAAAAMAP7/AAAAAAAAAAAMAAAAAAABAAAAAAAMAAEAAAACAAAAAAANAAAAAAABAAAAAAANAAEAAAACAAAAAAAOAAAAAAABAAAAAAAOAAEAAAABAAAAAAAOAP3/AAAAAAAAAAAOAP7/AAAAAAAAAAAKAAAAAAABAAAAAAAKAAEAAAABAAAAAAAKAAIAAAABAAAAAAAKAAMAAAABAAAAAAALAAAAAAABAAAAAAALAAEAAAABAAAAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAAJAPz/AAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAJAP//AAAAAAAAAAAJAAAAAAABAAAAAAAJAAEAAAABAAAAAAAJAAIAAAABAAAAAAAJAAMAAAABAAAAAAAMAAIAAAACAAAAAAAMAAMAAAABAAAAAAAKAPz/AAAAAAAAAAAKAP3/AAAAAAAAAAAKAP7/AAAAAAAAAAAKAP//AAAAAAAAAAALAPz/AAAAAAAAAAALAP//AAAAAAAAAAAMAPz/AAAAAAAAAAAMAP//AAAAAAAAAAANAPz/AAAAAAAAAAANAP3/AAAAAAAAAAANAP7/AAAAAAAAAAANAP//AAAAAAAAAAAOAPz/AAAAAAAAAAAOAP//AAAAAAAAAAAPAPz/AAABAAAAAAAPAP3/AAABAAAAAAAPAP7/AAABAAAAAAAPAP//AAABAAAAAAAPAAAAAAABAAAAAAAPAAEAAAABAAAAAAAPAAIAAAABAAAAAAAPAAMAAAABAAAAAAANAAIAAAACAAAAAAANAAMAAAABAAAAAAAOAAIAAAABAAAAAAAOAAMAAAABAAAAAAAAAPv/AAABAAAAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAADAPv/AAABAAAAAAAEAPv/AAABAAAAAAAFAPv/AAABAAAAAAAGAPv/AAABAAAAAAAHAPv/AAABAAAAAAAIAPv/AAABAAAAAAAJAPv/AAABAAAAAAAKAPv/AAABAAAAAAALAPv/AAABAAAAAAAMAPv/AAABAAAAAAANAPv/AAABAAAAAAAOAPv/AAABAAAAAAAPAPv/AAABAAAAAAAAAAQAAAABAAAAAAABAAQAAAABAAAAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAAGAAQAAAABAAAAAAAHAAQAAAABAAAAAAAIAAQAAAABAAAAAAAJAAQAAAABAAAAAAAKAAQAAAABAAAAAAALAAQAAAABAAAAAAAMAAQAAAABAAAAAAANAAQAAAABAAAAAAAOAAQAAAABAAAAAAAPAAQAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_67mud")
+
+[node name="level2" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="level2"]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="level2/ParallaxLayer2"]
+tile_map_data = PackedByteArray("AAAAAPv/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAACAAAAAAAAAAQAAAAAAAAAAAABAPv/AAAAAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAACAAAAAAABAAQAAAAAAAAAAAACAPv/AAAAAAAAAAACAPz/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAADAPv/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAACAAAAAAADAP7/AAACAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAAEAPv/AAAAAAAAAAAEAPz/AAAAAAAAAAAEAP3/AAACAAAAAAAEAP7/AAACAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAPv/AAAAAAAAAAAGAPz/AAAAAAAAAAAGAP3/AAACAAAAAAAGAP7/AAACAAAAAAAGAP//AAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAACAAAAAAAGAAMAAAACAAAAAAAGAAQAAAAAAAAAAAAHAPv/AAAAAAAAAAAHAPz/AAAAAAAAAAAHAP3/AAACAAAAAAAHAP7/AAACAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAACAAAAAAAHAAMAAAACAAAAAAAHAAQAAAAAAAAAAAAIAPv/AAAAAAAAAAAIAPz/AAAAAAAAAAAIAP3/AAACAAAAAAAIAP7/AAACAAAAAAAIAP//AAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAACAAAAAAAIAAMAAAACAAAAAAAIAAQAAAAAAAAAAAAJAPv/AAAAAAAAAAAJAPz/AAAAAAAAAAAJAP3/AAACAAAAAAAJAP7/AAACAAAAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAACAAAAAAAJAAMAAAACAAAAAAAJAAQAAAAAAAAAAAAKAPv/AAAAAAAAAAAKAPz/AAAAAAAAAAAKAP3/AAAAAAAAAAAKAP7/AAAAAAAAAAAKAP//AAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAACAAAAAAAKAAMAAAACAAAAAAAKAAQAAAAAAAAAAAALAPv/AAAAAAAAAAALAPz/AAAAAAAAAAALAP3/AAAAAAAAAAALAP7/AAAAAAAAAAALAP//AAACAAAAAAALAAAAAAACAAAAAAALAAEAAAACAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAAMAPv/AAAAAAAAAAAMAPz/AAAAAAAAAAAMAP3/AAAAAAAAAAAMAP7/AAAAAAAAAAAMAP//AAACAAAAAAAMAAAAAAACAAAAAAAMAAEAAAACAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAANAPv/AAAAAAAAAAANAPz/AAAAAAAAAAANAP3/AAAAAAAAAAANAP7/AAAAAAAAAAANAP//AAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAQAAAAAAAAAAAAOAPz/AAABAAAAAAAOAP3/AAABAAAAAAAOAP7/AAABAAAAAAAOAP//AAABAAAAAAAOAAAAAAABAAAAAAAOAAEAAAABAAAAAAAOAAIAAAABAAAAAAAOAAMAAAABAAAAAAAOAAQAAAABAAAAAAAPAPz/AAABAAAAAAAPAP3/AAABAAAAAAAPAP7/AAABAAAAAAAPAP//AAABAAAAAAAPAAAAAAABAAAAAAAPAAEAAAABAAAAAAAPAAIAAAABAAAAAAAPAAMAAAABAAAAAAAPAAQAAAABAAAAAAAOAPv/AAABAAAAAAAPAPv/AAABAAAAAAA=")
+tile_set = SubResource("TileSet_l2f17")
+
+[node name="level3" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="level3"]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="level3/ParallaxLayer3"]
+tile_map_data = PackedByteArray("AAAAAPv/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAABAPv/AAAAAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAACAPv/AAAAAAAAAAACAPz/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAADAPv/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAACAAAAAAADAP//AAACAAAAAAAEAPv/AAAAAAAAAAAEAPz/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAACAAAAAAAEAP//AAACAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAACAAAAAAAFAP//AAACAAAAAAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAABAAAAAAABAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAACAAAAAAABAAAAAAACAAEAAAABAAAAAAACAAIAAAABAAAAAAACAAMAAAABAAAAAAACAAQAAAABAAAAAAADAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAIAAAABAAAAAAADAAMAAAABAAAAAAADAAQAAAABAAAAAAAEAAAAAAACAAAAAAAEAAEAAAACAAAAAAAEAAIAAAABAAAAAAAEAAMAAAABAAAAAAAEAAQAAAABAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAAAAAAFAAQAAAABAAAAAAAGAP7/AAACAAAAAAAGAP//AAACAAAAAAAGAAAAAAACAAAAAAAGAAEAAAACAAAAAAAHAP7/AAACAAAAAAAHAP//AAACAAAAAAAHAAAAAAACAAAAAAAHAAEAAAACAAAAAAAIAP7/AAACAAAAAAAIAP//AAACAAAAAAAIAAAAAAACAAAAAAAIAAEAAAACAAAAAAAJAP7/AAACAAAAAAAJAP//AAACAAAAAAAJAAAAAAACAAAAAAAJAAEAAAACAAAAAAAGAPv/AAABAAAAAAAGAPz/AAABAAAAAAAGAP3/AAABAAAAAAAHAPv/AAABAAAAAAAHAPz/AAABAAAAAAAHAP3/AAABAAAAAAAIAPv/AAABAAAAAAAIAPz/AAABAAAAAAAIAP3/AAABAAAAAAAJAPv/AAABAAAAAAAJAPz/AAABAAAAAAAJAP3/AAABAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAKAPv/AAACAAAAAAAKAPz/AAACAAAAAAAKAP3/AAACAAAAAAAKAP7/AAACAAAAAAAKAP//AAACAAAAAAAKAAAAAAACAAAAAAALAPv/AAACAAAAAAALAPz/AAACAAAAAAALAP3/AAACAAAAAAALAP7/AAACAAAAAAALAP//AAACAAAAAAALAAAAAAACAAAAAAAMAPv/AAACAAAAAAAMAPz/AAACAAAAAAAMAP3/AAACAAAAAAAMAP7/AAACAAAAAAAMAP//AAACAAAAAAAMAAAAAAACAAAAAAANAPv/AAACAAAAAAANAPz/AAACAAAAAAANAP3/AAACAAAAAAANAP7/AAACAAAAAAANAP//AAACAAAAAAANAAAAAAACAAAAAAAKAAEAAAABAAAAAAAKAAIAAAABAAAAAAAKAAMAAAABAAAAAAAKAAQAAAABAAAAAAALAAEAAAABAAAAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAAMAAEAAAABAAAAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAANAAEAAAABAAAAAAANAAIAAAABAAAAAAANAAMAAAABAAAAAAANAAQAAAABAAAAAAAOAAEAAAABAAAAAAAOAAIAAAABAAAAAAAOAAMAAAABAAAAAAAOAAQAAAABAAAAAAAPAAEAAAABAAAAAAAPAAIAAAABAAAAAAAPAAMAAAABAAAAAAAPAAQAAAABAAAAAAAOAPv/AAACAAAAAAAOAPz/AAACAAAAAAAOAP3/AAACAAAAAAAOAP7/AAACAAAAAAAOAP//AAACAAAAAAAOAAAAAAACAAAAAAAPAPv/AAACAAAAAAAPAPz/AAACAAAAAAAPAP3/AAACAAAAAAAPAP7/AAACAAAAAAAPAP//AAACAAAAAAAPAAAAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_jx7xl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 4)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("2_e0drp")
+parallax_path = NodePath("../level1")
+characters_path = NodePath("../characters")
+
+[node name="Spawner" parent="." instance=ExtResource("4_3x0ky")]
+position = Vector2(1, 0)
+controller_path = NodePath("../GameController")
+characters_path = NodePath("../characters")
+mainchara_path = NodePath("../mainchara")
+camerapath = NodePath("../Camera2D")
+
+[node name="characters" type="Node2D" parent="."]
+
+[node name="mainchara" parent="." instance=ExtResource("1_64j8e")]
+position = Vector2(576, 2)
+controllerpath = NodePath("../GameController")
+
+[node name="hearts" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="hearts"]
+offset_right = 238.0
+offset_bottom = 87.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bmu8i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hearts/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -32.0
+offset_right = 100.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="heart" type="TextureRect" parent="hearts/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_swbbo")
+
+[node name="heart2" type="TextureRect" parent="hearts/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_swbbo")
+
+[node name="heart3" type="TextureRect" parent="hearts/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_swbbo")
+
+[node name="swords" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="swords"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -350.0
+offset_bottom = 87.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bmu8i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="swords/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -32.0
+offset_right = 168.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sword" type="TextureRect" parent="swords/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_dbwpm")
+
+[node name="sword2" type="TextureRect" parent="swords/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_dbwpm")
+
+[node name="sword3" type="TextureRect" parent="swords/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_dbwpm")
+
+[node name="sword4" type="TextureRect" parent="swords/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_dbwpm")
+
+[node name="sword5" type="TextureRect" parent="swords/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_dbwpm")
+
+[node name="points" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="points"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wi0rb")
+
+[node name="Label" type="Label" parent="points/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 53.0
+offset_right = 20.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_fu8xd")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+
+[node name="enemycount" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="enemycount"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wi0rb")
+
+[node name="Label" type="Label" parent="enemycount/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -51.0
+offset_right = 205.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_fu8xd")
+theme_override_font_sizes/font_size = 50
+text = "Enemy Count:"
+horizontal_alignment = 1
+
+[node name="options" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Panel" type="Panel" parent="options"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ckrkj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="options/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="options/Panel/VBoxContainer/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_fu8xd")
+theme_override_font_sizes/font_size = 60
+text = "Lose a health slot"
+
+[node name="Button2" type="Button" parent="options/Panel/VBoxContainer/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_fu8xd")
+theme_override_font_sizes/font_size = 60
+text = "Lose an ammo slot"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="options/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="options/Panel/VBoxContainer/HBoxContainer2"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_fu8xd")
+theme_override_font_sizes/font_size = 60
+text = "Everyone goes faster"
+
+[node name="Button2" type="Button" parent="options/Panel/VBoxContainer/HBoxContainer2"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_fu8xd")
+theme_override_font_sizes/font_size = 60
+text = "Your points halve"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_lliu4")
+
+[connection signal="pressed" from="options/Panel/VBoxContainer/HBoxContainer/Button" to="GameController" method="_on_button_pressed"]
+[connection signal="pressed" from="options/Panel/VBoxContainer/HBoxContainer/Button2" to="GameController" method="_on_button_2_pressed"]
+[connection signal="pressed" from="options/Panel/VBoxContainer/HBoxContainer2/Button" to="GameController" method="_on_button_3_pressed"]
+[connection signal="pressed" from="options/Panel/VBoxContainer/HBoxContainer2/Button2" to="GameController" method="_on_button_4_pressed"]
