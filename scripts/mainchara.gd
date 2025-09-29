@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 @export var growth_per_sec: float = 0.0085
-@export var edge_padding: float = 130
 @export var controllerpath : NodePath
 @onready var cooldown_timer := $melee_box/Timer
 @onready var melee_box := $melee_box
+@onready var audio := $AudioStreamPlayer
 @onready var controller := get_node(controllerpath)
 @onready var cam: Camera2D = get_viewport().get_camera_2d()
 
@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 		print("attacking")
 		attacking_rn = true
 		$AnimatedSprite2D.play("hit")
+		audio.play()
 		can_attack = false
 		controller._lose_ammo()
 		cooldown_timer.start()
@@ -149,4 +150,4 @@ func _clamp_to_camera() -> void:
 	var bottom_right := center + half
 
 	global_position.y = clamp(global_position.y, top_left.y, bottom_right.y - 20)
-	global_position.x = clamp(global_position.x, top_left.x + edge_padding, bottom_right.x - edge_padding)
+	global_position.x = clamp(global_position.x, top_left.x + 1, bottom_right.x - 1)

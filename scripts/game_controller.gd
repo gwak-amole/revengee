@@ -62,7 +62,6 @@ func _ready() -> void:
 	print("[Hearts] nodes:", heart_nodes.size(), " lives:", lives)
 	print("[ammo] nodes:", sword_nodes.size(), " ammo:", ammos)
 	_loop_points()
-	_loop_lives()
 	_update_enemieskilled()
 
 
@@ -96,15 +95,6 @@ func _on_enemy_contacted(enemy: Node) -> void:
 			await get_tree().create_timer(2.0).timeout
 		# enemy.queue_free()
 	
-func _loop_lives():
-	await get_tree().create_timer(15.0).timeout
-	while true:
-		while get_tree().paused: 
-			await get_tree().create_timer(0.1, true).timeout
-		if lives < 3:
-			await _increment_lives()
-		await get_tree().create_timer(15.0).timeout
-		print("looping lives")
 
 func _increment_lives():
 	lives = max(lives + 1, 0)
@@ -233,3 +223,7 @@ func _on_button_4_pressed() -> void:
 	await get_tree().create_timer(4.0).timeout
 	points_frozen = false
 	print("points unfrozen")
+
+func _on_heart_contacted() -> void:
+	print("connected to controller")
+	_increment_lives()

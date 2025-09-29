@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ybttcib7prf6"]
+[gd_scene load_steps=23 format=4 uid="uid://ybttcib7prf6"]
 
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_0ipxr"]
 [ext_resource type="PackedScene" uid="uid://cbblcbmhmslnt" path="res://scenes/mainchara.tscn" id="1_64j8e"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://n1pekm2liskn" path="res://scenes/spawner.tscn" id="4_3x0ky"]
 [ext_resource type="Texture2D" uid="uid://cucujmx8x5rfj" path="res://art/tileset/level3tiles.png" id="4_m6btk"]
 [ext_resource type="Texture2D" uid="uid://b7s6lqpennfvt" path="res://art/heart.png" id="6_swbbo"]
+[ext_resource type="PackedScene" uid="uid://blfh1kvkyco1w" path="res://scenes/event_spawner.tscn" id="7_1mahn"]
 [ext_resource type="Texture2D" uid="uid://b2k2cbr123waa" path="res://art/swordammo.png" id="7_dbwpm"]
 [ext_resource type="FontFile" uid="uid://dm81osccu5431" path="res://fonts/Micro_5/Micro5-Regular.ttf" id="7_fu8xd"]
+[ext_resource type="PackedScene" uid="uid://bwtt36e6pd6y1" path="res://scenes/heart.tscn" id="8_2wfxl"]
 [ext_resource type="AudioStream" uid="uid://cel154mt4f87h" path="res://audio/683457__seth_makes_sounds__dope-video-game-boss-music.wav" id="11_lliu4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73ive"]
@@ -107,6 +109,15 @@ controller_path = NodePath("../GameController")
 characters_path = NodePath("../characters")
 mainchara_path = NodePath("../mainchara")
 camerapath = NodePath("../Camera2D")
+
+[node name="EventSpawner" parent="." instance=ExtResource("7_1mahn")]
+heart_scene = ExtResource("8_2wfxl")
+controller_path = NodePath("../GameController")
+characters_path = NodePath("../heartschars")
+mainchara_path = NodePath("../mainchara")
+camerapath = NodePath("../Camera2D")
+
+[node name="heartschars" type="Node2D" parent="."]
 
 [node name="characters" type="Node2D" parent="."]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbblcbmhmslnt"]
+[gd_scene load_steps=5 format=3 uid="uid://cbblcbmhmslnt"]
 
 [ext_resource type="SpriteFrames" uid="uid://fk6gy1unycu6" path="res://art/frames/mainchara_spriteframes.tres" id="1_583j3"]
 [ext_resource type="Script" path="res://scripts/mainchara.gd" id="1_gp3er"]
+[ext_resource type="AudioStream" uid="uid://bvhpkja6qvewd" path="res://audio/326847__johnbuhr__sword_clash-37.wav" id="3_5pd44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqkp3"]
 size = Vector2(32, 33)
@@ -28,3 +29,6 @@ target_position = Vector2(60, 0)
 
 [node name="Timer" type="Timer" parent="melee_box"]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5pd44")
